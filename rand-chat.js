@@ -37,12 +37,29 @@ var
 	elm_Message = $('message'),
 	elm_Send = $('send');
 	
+	/**
 	console.log(
 		elm_Messages + '\n',
 		elm_Disconnect + '\n',
 		elm_Message + '\n',
 		elm_Send + '\n'
 	);
+	*/
+	
+// Listen for key commands
+document.onkeydown = function (event) {
+	switch (event.which) {
+		case 13:
+			// console.log('Enter');
+			send_message(elm_Message.innerHTML);
+		break;
+		
+		case 120:
+			// console.log('F9');
+			new_chat();
+		break;
+	}
+};
 
 // Load things when the page is loaded
 window.onload = function () {
