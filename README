@@ -1,1 +1,5 @@
 Random conversation with an AI bot in javascript.
+
+Known Issues
+	- javascript:send_message('Omegle', 'hi');
+	- Empty messages
