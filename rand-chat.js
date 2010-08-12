@@ -46,12 +46,24 @@ var
 	);
 	*/
 	
+function send_message(user, msg) {
+	// Format the message a little
+	if (msg.substr(0, 1) == '\n')
+		msg = msg.substr(1); 
+	
+	elm_Messages.innerHTML += user + ': ' + msg + '\n';
+	
+	setTimeout(function () {
+		elm_Message.value = null;
+	}, 10);
+}
+	
 // Listen for key commands
 document.onkeydown = function (event) {
 	switch (event.which) {
 		case 13:
 			// console.log('Enter');
-			send_message(elm_Message.innerHTML);
+			send_message('You', elm_Message.value);
 		break;
 		
 		case 120:
