@@ -4,14 +4,41 @@
  * 2010-08-12
  */
 
-var Words = {
-	greeting: [
+var Words = [
+	// Greetings
+	{word:'hello', score:1},
+	{word:'hi', score:1},
+	{word:'hey', score:1}
+];
+
+var _Words = Words.length;
+
+var AI = {
+	pickResponse: function (msg) {
+		// Break apart each word to try to find the tone.
+		// console.log(msg.split(' '));
+		var 
+			score = 0,
+			parts = msg.split(' '),
+			_parts = parts.length;
 		
-	],
-	
-	closing: [
+		// This will NEED to be a better search format, sometime...
+		console.log('Words: ' + _Words);
+		console.log('Parts: ' + _parts);
 		
-	]
+		for (var i = 0; i < _parts; i++) {
+			for (var k = 0; k < _Words; k++) {
+				if (Words[k].word === parts[i]) {
+					score += Words[k].score;
+					k = _Words;
+				}
+			}
+			
+		}
+		
+		// Then build a response.
+		send_message('Stranger', score.toString());
+	}
 };
 
 /**
@@ -55,6 +82,8 @@ function send_message(user, msg) {
 		msg = msg.substr(1); 
 	
 	elm_Messages.innerHTML += user + ': ' + msg + '\n';
+	
+	AI.pickResponse(msg);
 	
 	setTimeout(function () {
 		elm_Message.value = null;
