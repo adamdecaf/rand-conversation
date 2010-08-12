@@ -21,10 +21,13 @@ var Words = {
 function toggle_dissconnect_value(value) {
 	var values = ['Connect', 'Really?', 'Disconnect'];
 	
-	if (!value)
+	if (!value || value >= values.length) {
+		elm_Disconnect.status = 0;
 		return values[0];
-	else
-		return values[value]; 
+	} else {
+		elm_Disconnect.status++;
+		return values[value + 1]; 
+	}
 }
 
 
@@ -57,6 +60,13 @@ function send_message(user, msg) {
 		elm_Message.value = null;
 	}, 10);
 }
+
+function new_chat() {
+	// Fill any fields with values
+	elm_Messages.innerHTML = 'Welcome to Random Chat!\nYou\'re going to be chatting with a javascript bot, so have fun!\n';
+	elm_Disconnect.value = toggle_dissconnect_value(0);
+	elm_Send.value = 'Send';
+}
 	
 // Listen for key commands
 document.onkeydown = function (event) {
@@ -76,10 +86,7 @@ document.onkeydown = function (event) {
 // Load things when the page is loaded
 window.onload = function () {
 
-	// Fill any fields with values
-	elm_Messages.innerHTML = 'Welcome to Random Chat!\nYou\'re going to be chatting with a javascript bot, so have fun!\n';
-	elm_Disconnect.value = toggle_dissconnect_value(0);
-	elm_Send.value = 'Send';
-	
+	// Start a new chat
+	new_chat();
 
 };
