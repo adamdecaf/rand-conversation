@@ -43,18 +43,30 @@ var AI = {
 };
 
 /**
+ * disconnect()
+ * Start a new chat
+ */
+function disconnect(elm) {
+	elm.status++; 
+	elm.value = toggle_dissconnect_value(elm.status);
+	
+	if (elm.status == 2)
+		new_chat();
+}
+
+/**
  * toggle_disssconnect_value()
  * Toggle the value of elm_Send
  */
 function toggle_dissconnect_value(value) {
-	var values = ['Connect', 'Really?', 'Disconnect'];
+	var values = ['Disconnect', 'Really?', 'Connect'];
 	
 	if (!value || value >= values.length) {
 		elm_Disconnect.status = 0;
 		return values[0];
 	} else {
 		elm_Disconnect.status++;
-		return values[value + 1]; 
+		return values[value]; 
 	}
 }
 
@@ -97,6 +109,7 @@ function new_chat() {
 	elm_Messages.innerHTML = 'Welcome to Random Chat!\nYou\'re going to be chatting with a javascript bot, so have fun!\n';
 	elm_Disconnect.value = toggle_dissconnect_value(0);
 	elm_Send.value = 'Send';
+	elm_Message.focus();
 }
 	
 // Listen for key commands
