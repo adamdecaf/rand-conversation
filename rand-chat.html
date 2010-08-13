@@ -57,7 +57,7 @@ article#chat {
 		
 		<input type="button" id="disconnect" onclick="disconnect(this);" />
 			<textarea id="message" autofocus></textarea>
-		<input type="button" id="send" />
+		<input type="button" id="send" onclick="send_message('You', elm_Message.value); elm_Message.focus();" />
 	</article>
 
 <script src="rand-chat.js"></script>
