@@ -6,9 +6,12 @@
 
 var Words = [
 	// Greetings
-	{word:'hello', score:1},
-	{word:'hi', score:1},
-	{word:'hey', score:1}
+	{word:'hello', type:'gretting', score:1},
+	{word:'hi', type:'gretting', score:1},
+	{word:'hey', type:'gretting', score:1},
+	
+	// Swear Words
+	{word:'fuck', type:'swear', score:-3}
 ];
 
 var _Words = Words.length;
