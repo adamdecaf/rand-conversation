@@ -30,4 +30,7 @@ the input, if a user talks back with relation to that topic (same subjects)
 then keep going in that path.
 
 The bot should stay on subject with the input, if the subject changes then 
-should the bot switch to that or try to mix in both subjects? 
+should the bot switch to that or try to mix in both subjects?
+
+Check if words are repeated, and if they're negative words then be extremly 
+negative or if they're positive then be extremly positive.
