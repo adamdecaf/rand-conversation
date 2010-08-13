@@ -3,3 +3,31 @@ Random conversation with an AI bot in javascript.
 Known Issues
 	- javascript:send_message('Omegle', 'hi');
 	- Empty messages
+	
+Build a sentence based off of a "score" for the words,
+ hey, how are you?
+ wow, this pizza tastes great!!!!
+ fuck, not another accident!!!
+ the ball is hella big!
+ 
+!(!+), ?(?+)
+^^ Change the score when more are added
+
+CONTEXT: context will be very important, if a swear word
+is used it could given a -3 score when the user wanted a +2.
+
+Try to guess (or pseudorandomly) at the word to say back, if 
+the user uses [a] word(s) many times then use that word back, 
+or decide not to.
+
+Should the bot match the score that it's given, or could you allow
+for a +/-1 difference. (Then if the response seems positive (relative
+to the input (aka. the user keeps on talking at that same tone/score) 
+adjust to be more negative or positive.)
+
+What would happen if the bot just said sentences that don't relate to 
+the input, if a user talks back with relation to that topic (same subjects)
+then keep going in that path.
+
+The bot should stay on subject with the input, if the subject changes then 
+should the bot switch to that or try to mix in both subjects? 
