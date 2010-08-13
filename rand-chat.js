@@ -15,22 +15,23 @@ var _Words = Words.length;
 
 var AI = {
 	pickResponse: function (msg) {
+		
 		// Break apart each word to try to find the tone.
-		// console.log(msg.split(' '));
+		//console.log(msg.split(' '));
 		var 
 			score = 0,
 			parts = msg.split(' '),
 			_parts = parts.length;
 		
 		// This will NEED to be a better search format, sometime...
-		console.log('Words: ' + _Words);
-		console.log('Parts: ' + _parts);
+		//console.log('Words: ' + _Words);
+		//console.log('Parts: ' + _parts);
 		
 		for (var i = 0; i < _parts; i++) {
 			for (var k = 0; k < _Words; k++) {
-				if (Words[k].word === parts[i]) {
-					score += Words[k].score;
-					k = _Words;
+				if (parts[i] == Words[k].word) {
+					score += Words[k].score; 
+					break;
 				}
 			}
 			
@@ -83,11 +84,12 @@ function send_message(user, msg) {
 	
 	elm_Messages.innerHTML += user + ': ' + msg + '\n';
 	
-	AI.pickResponse(msg);
-	
-	setTimeout(function () {
+	window.timeout = setTimeout(function (msg) {
+		AI.pickResponse(msg);
 		elm_Message.value = null;
-	}, 10);
+		clearTimeout(window.timeout);
+	}, 100, msg);
+	
 }
 
 function new_chat() {
