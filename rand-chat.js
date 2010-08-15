@@ -6,18 +6,56 @@
 
 var Words = [
 	// Greetings
-	{word:'hello', type:'gretting', score:1},
-	{word:'hi', type:'gretting', score:1},
-	{word:'hey', type:'gretting', score:1},
+	{word:'he(l+)o', type:'gretting', score:1},
+	{word:'h(i+)', type:'gretting', score:1},
+	{word:'he(y+)', type:'gretting', score:1},
+	{word:'s(u+)(p+)', type:'gretting', score:1},
+	
+	// Annoying Greetings
+	{word:'asl', type:'annoying-gretting', score:-1},
+	
+	// Confirmations
+	{word:'o(k+)(a+)(y+)', type:'confirmation', score:1},
+	{word:'(y(e+)?(a+)?(h+)?){2,}', type:'confirmation', score:1},
+	
+	// Positives
+	{word:'((h+)(a+)+)', type:'positives', score:1},
+	
+	// Negatives
+	{word:'b(o+)', type:'negatives', score:-1},
+	
+	// Emotions
+	//{word:":\)", type:'emotion', score:1},
+	//{word:":\(", type:'emotion', score:-1},
+	
+	// Question words
+	{word:'wha(t+)', type:'question', score:0},
+	{word:'where', type:'', score:0},
+	{word:'when', type:'', score:0},
+	{word:'who', type:'', score:0},
+	{word:'(wh)?(y+){1,}', type:'', score:0},
+	{word:'h(o+)(w+)', type:'', score:0},
 	
 	// Swear Words
-	{word:'fuck', type:'swear', score:-3}
+	{word:'fuc(k+)', type:'swear', score:-3},
+	{word:'sh(i+)(t+)', type:'swear', score:-3},
+	{word:'da(m+)(n+)', type:'swear', score:-3},
+	{word:'he(l+)', type:'swear', score:-3},
+	{word:'c(u+)(m+)', type:'swear', score:-3},
+	
+	// 
+	{word:'', type:'', score:0},
+	{word:'', type:'', score:0}
 ];
 
 var _Words = Words.length;
 
 var AI = {
 	pickResponse: function (msg) {
+	
+		//  Clean the message, at least for now
+		//msg = msg.replace(/([^a-z0-9\s]+)/, '');
+		//console.log(msg);
 		
 		// Break apart each word to try to find the tone.
 		//console.log(msg.split(' '));
@@ -31,8 +69,12 @@ var AI = {
 		//console.log('Parts: ' + _parts);
 		
 		for (var i = 0; i < _parts; i++) {
+			// Clean the part, at least a little
+			parts[i] = parts[i].replace(/[^a-z0-9\s]+/, '');
+			console.log(parts[i]);
+			
 			for (var k = 0; k < _Words; k++) {
-				if (parts[i] == Words[k].word) {
+				if (parts[i].match(Words[k].word)) {
 					score += Words[k].score; 
 					break;
 				}
