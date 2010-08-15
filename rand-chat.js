@@ -50,6 +50,20 @@ var Words = [
 
 var _Words = Words.length;
 
+// Find the start and stop points for all types of words.
+var start_and_stop_points = [];
+var last_start_point = 0;
+var last_word_type = Words[0].type;
+
+for (var n = 0; n < _Words - 1; n++) {
+	if (last_word_type != Words[n+1].type) {
+		start_and_stop_points.push({type: Words[n].type, start: last_start_point + 1, stop: n + 1}); 
+		last_start_point = n;
+		last_word_type = Words[n].type;
+	}
+}
+//console.log(start_and_stop_points);
+
 var AI = {
 	pickResponse: function (msg) {
 	
@@ -71,7 +85,7 @@ var AI = {
 		for (var i = 0; i < _parts; i++) {
 			// Clean the part, at least a little
 			parts[i] = parts[i].replace(/[^a-z0-9\s]+/, '');
-			console.log(parts[i]);
+			//console.log(parts[i]);
 			
 			for (var k = 0; k < _Words; k++) {
 				if (parts[i].match(Words[k].word)) {
