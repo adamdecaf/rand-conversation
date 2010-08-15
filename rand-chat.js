@@ -4,6 +4,9 @@
  * 2010-08-12
  */
 
+if (console == undefined)
+	var console = {log: function() {}};
+
 var Words = [
 	// Greetings
 	{word:'he(l+)o', type:'gretting', score:1},
@@ -123,16 +126,15 @@ function search_and_respond(wordType, msg) {
 	for (i = 0; i < msg.length; i++) {
 		msg[i] = msg[i].replace(/[^a-z0-9\s]+/, '');
 		for (k = start_and_stop_points[n].start; k < start_and_stop_points[n].stop; k++) {
-			if (msg[i] == Words[k]) {
-				alert(Words[k].word);
-				//possibleWords.push(Words[k].word);
-			}
+			if (msg[i].match(Words[k].word))
+				possibleWords.push(Words[k].word);
 		}
 	}
 	
 	// Now pick a random word
 	console.log(possibleWords);
-	send_message('Stranger', possibleWords[parseInt(Math.random() * possibleWords.length - 1, 10)]);
+	//send_message('Stranger', possibleWords[parseInt(Math.random() * possibleWords.length, 10)]);
+	elm_Messages.innerHTML += 'Stranger: ' + possibleWords[parseInt(Math.random() * possibleWords.length, 10)] + '\n';
 	
 }
 
