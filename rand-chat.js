@@ -101,6 +101,7 @@ var AI = {
 		
 		// Search for a greeting
 		search_and_respond('greeting', msg);
+		search_and_respond('confirmation', msg);
 		
 		// Then build a response.
 		//send_message('Stranger', score.toString());
@@ -130,9 +131,8 @@ function search_and_respond(wordType, msg) {
 	}
 	
 	// Now pick a random word
-	console.log(possibleWords);
-	//send_message('Stranger', possibleWords[parseInt(Math.random() * possibleWords.length, 10)]);
-	elm_Messages.innerHTML += 'Stranger: ' + possibleWords[parseInt(Math.random() * possibleWords.length, 10)] + '\n';
+	if (possibleWords.length > 0)
+		elm_Messages.innerHTML += 'Stranger: ' + possibleWords[parseInt(Math.random() * possibleWords.length, 10)] + '\n';
 	
 }
 
