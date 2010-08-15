@@ -9,46 +9,45 @@ if (console == undefined)
 
 var Words = [
 	// Greetings
-	{word:'he(l+)o', type:'gretting', score:1},
-	{word:'h(i+)', type:'gretting', score:1},
-	{word:'he(y+)', type:'gretting', score:1},
-	{word:'s(u+)(p+)', type:'gretting', score:1},
+	{word:'he(l+)o', plainText:'hello', type:'gretting', score:1},
+	{word:'h(i+)', plainText:'hi', type:'gretting', score:1},
+	{word:'he(y+)', plainText:'hey', type:'gretting', score:1},
+	{word:'s(u+)(p+)', plainText:'sup', type:'gretting', score:1},
 	
 	// Annoying Greetings
-	{word:'asl', type:'annoying-gretting', score:-1},
+	{word:'asl', plainText:'', type:'annoying-gretting', score:-1},
 	
 	// Confirmations
-	{word:'o(k+)(a+)(y+)', type:'confirmation', score:1},
-	{word:'(y(e+)?(a+)?(h+)?){2,}', type:'confirmation', score:1},
+	{word:'o(k+)(a+)(y+)', plainText:'', type:'confirmation', score:1},
+	{word:'(y(e+)?(a+)?(h+)?){2,}', plainText:'', type:'confirmation', score:1},
 	
 	// Positives
-	{word:'((h+)(a+)+)', type:'positives', score:1},
+	{word:'((h+)(a+)+)', plainText:'', type:'positives', score:1},
 	
 	// Negatives
-	{word:'b(o+)', type:'negatives', score:-1},
+	{word:'b(o+)', plainText:'', type:'negatives', score:-1},
 	
 	// Emotions
 	//{word:":\)", type:'emotion', score:1},
 	//{word:":\(", type:'emotion', score:-1},
 	
 	// Question words
-	{word:'wha(t+)', type:'question', score:0},
-	{word:'where', type:'', score:0},
-	{word:'when', type:'', score:0},
-	{word:'who', type:'', score:0},
-	{word:'(wh)?(y+){1,}', type:'', score:0},
-	{word:'h(o+)(w+)', type:'', score:0},
+	{word:'wha(t+)', plainText:'', type:'question', score:0},
+	{word:'where', plainText:'', type:'', score:0},
+	{word:'when', plainText:'', type:'', score:0},
+	{word:'who', plainText:'', type:'', score:0},
+	{word:'(wh)?(y+){1,}', plainText:'', type:'', score:0},
+	{word:'h(o+)(w+)', plainText:'', type:'', score:0},
 	
 	// Swear Words
-	{word:'fuc(k+)', type:'swear', score:-3},
-	{word:'sh(i+)(t+)', type:'swear', score:-3},
-	{word:'da(m+)(n+)', type:'swear', score:-3},
-	{word:'he(l+)', type:'swear', score:-3},
-	{word:'c(u+)(m+)', type:'swear', score:-3},
+	{word:'fuc(k+)', plainText:'', type:'swear', score:-3},
+	{word:'sh(i+)(t+)', plainText:'', type:'swear', score:-3},
+	{word:'da(m+)(n+)', plainText:'', type:'swear', score:-3},
+	{word:'he(l+)', plainText:'', type:'swear', score:-3},
+	{word:'c(u+)(m+)', plainText:'', type:'swear', score:-3},
 	
 	// 
-	{word:'', type:'', score:0},
-	{word:'', type:'', score:0}
+	//{word:'', plainText:'', type:'', score:0},
 ];
 
 var _Words = Words.length;
@@ -104,7 +103,7 @@ var AI = {
 		search_and_respond('greeting', msg);
 		
 		// Then build a response.
-		send_message('Stranger', score.toString());
+		//send_message('Stranger', score.toString());
 	}
 };
 
@@ -126,8 +125,15 @@ function search_and_respond(wordType, msg) {
 	for (i = 0; i < msg.length; i++) {
 		msg[i] = msg[i].replace(/[^a-z0-9\s]+/, '');
 		for (k = start_and_stop_points[n].start; k < start_and_stop_points[n].stop; k++) {
+		
+			alert(
+				k + '\n' + 
+				Words[start_and_stop_points[k].start] + "\n" + 
+				Words[start_and_stop_points[k].stop]
+			);
+		
 			if (msg[i].match(Words[k].word))
-				possibleWords.push(Words[k].word);
+				possibleWords.push(Words[k].plainText);
 		}
 	}
 	
