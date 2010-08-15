@@ -125,15 +125,7 @@ function search_and_respond(wordType, msg) {
 	for (i = 0; i < msg.length; i++) {
 		msg[i] = msg[i].replace(/[^a-z0-9\s]+/, '');
 		for (k = start_and_stop_points[n].start; k < start_and_stop_points[n].stop; k++) {
-		
-			alert(
-				k + '\n' + 
-				Words[start_and_stop_points[k].start] + "\n" + 
-				Words[start_and_stop_points[k].stop]
-			);
-		
-			if (msg[i].match(Words[k].word))
-				possibleWords.push(Words[k].plainText);
+			possibleWords.push(Words[k].plainText);
 		}
 	}
 	
