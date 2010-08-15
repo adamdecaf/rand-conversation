@@ -54,6 +54,7 @@ var _Words = Words.length;
 var start_and_stop_points = [];
 var last_start_point = 0;
 var last_word_type = Words[0].type;
+var _wordTypes = start_and_stop_points.length;
 
 for (var n = 0; n < _Words - 1; n++) {
 	if (last_word_type != Words[n+1].type) {
@@ -96,10 +97,44 @@ var AI = {
 			
 		}
 		
+		// Search for a greeting
+		search_and_respond('greeting', msg);
+		
 		// Then build a response.
 		send_message('Stranger', score.toString());
 	}
 };
+
+/**
+ * search_and_respond(String wordType)
+ * Search the message for the word type and then respond.
+ */
+function search_and_respond(wordType, msg) {
+	// Find the start and stop points for the wordType
+	for (var n = i = k = 0; n < _wordTypes; n++) {
+		if (wordType == start_and_stop_points[n].type)
+			break;
+	}
+	
+	// Now look for those words in the phrase
+	var possibleWords = [];
+	msg = msg.split(' ');
+	
+	for (i = 0; i < msg.length; i++) {
+		msg[i] = msg[i].replace(/[^a-z0-9\s]+/, '');
+		for (k = start_and_stop_points[n].start; k < start_and_stop_points[n].stop; k++) {
+			if (msg[i] == Words[k]) {
+				alert(Words[k].word);
+				//possibleWords.push(Words[k].word);
+			}
+		}
+	}
+	
+	// Now pick a random word
+	console.log(possibleWords);
+	send_message('Stranger', possibleWords[parseInt(Math.random() * possibleWords.length - 1, 10)]);
+	
+}
 
 /**
  * disconnect()
